@@ -1,209 +1,281 @@
 /**
- * Béo's Family - Interface Logic
- * Handling 3D tilt, Node clicks, Navigation, and Easter Eggs.
+ * Béo's Family — Interface Logic
+ * Nodes · Dropdown · Gallery · Lightbox · Easter Egg · 3D Tilt
  */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
 
-    /* =========================================================
-       1. Top-Right Navigation & Dropdown
-       ========================================================= */
-    const dropdownBtn = document.getElementById("dropdown-btn");
-    const dropdownContent = document.getElementById("dropdown-content");
-    
-    // Toggle dropdown visibility
-    dropdownBtn.addEventListener("click", (e) => {
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       1. NAVIGATION DROPDOWN
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const dropdownBtn     = document.getElementById('dropdown-btn');
+    const dropdownContent = document.getElementById('dropdown-content');
+
+    dropdownBtn.addEventListener('click', e => {
         e.stopPropagation();
-        dropdownContent.classList.toggle("show");
+        dropdownContent.classList.toggle('show');
+    });
+    document.addEventListener('click', e => {
+        if (!e.target.closest('.dropdown')) dropdownContent.classList.remove('show');
     });
 
-    // Close when clicking outside
-    document.addEventListener("click", (e) => {
-        if (!e.target.closest('.dropdown')) {
-            dropdownContent.classList.remove("show");
-        }
-    });
-
-    // Smooth scroll offset for anchor links
-    document.querySelectorAll('.dropdown-content a').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetEl = document.querySelector(targetId);
-            
-            if (targetEl) {
-                // Close dropdown
-                dropdownContent.classList.remove("show");
-                // Scroll specifically to the timeline track area
-                targetEl.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
-            }
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       2. 3D TILT EFFECT ON HERO
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const heroTilt = document.getElementById('hero-tilt-target');
+    if (heroTilt && window.matchMedia('(pointer: fine)').matches) {
+        heroTilt.addEventListener('mousemove', e => {
+            const r = heroTilt.getBoundingClientRect();
+            const x = e.clientX - r.left;
+            const y = e.clientY - r.top;
+            const rx = ((y - r.height / 2) / r.height) * -7;
+            const ry = ((x - r.width  / 2) / r.width)  *  7;
+            heroTilt.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale3d(1.02,1.02,1.02)`;
         });
-    });
-
-    /* =========================================================
-       2. Hero Container 3D Tilt Effect
-       ========================================================= */
-    const heroTiltTarget = document.getElementById("hero-tilt-target");
-    
-    if (heroTiltTarget && window.matchMedia("(pointer: fine)").matches) {
-        heroTiltTarget.addEventListener('mousemove', (e) => {
-            const rect = heroTiltTarget.getBoundingClientRect();
-            // Calculate mouse position relative to container center
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            // Calculate tilt degrees (max +- 8 degrees for subtlety)
-            const rotateX = ((y - centerY) / centerY) * -8;
-            const rotateY = ((x - centerX) / centerX) * 8;
-            
-            // Apply transform - 'perspective' defines the 3D depth
-            heroTiltTarget.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-        });
-
-        heroTiltTarget.addEventListener('mouseleave', () => {
-            // Smooth snap-back
-            heroTiltTarget.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        heroTilt.addEventListener('mouseleave', () => {
+            heroTilt.style.transform = 'rotateX(0) rotateY(0) scale3d(1,1,1)';
         });
     }
 
-    /* =========================================================
-       3. Interactive Nodes & Persona Profiles
-       ========================================================= */
-    const nodes = document.querySelectorAll('.node');
-    const popup = document.getElementById('profile-popup');
-    const popupTitle = document.getElementById('popup-title');
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       3. INTERACTIVE NODES — PERSONA PROFILES
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const popup      = document.getElementById('profile-popup');
+    const popupAvatar   = document.getElementById('popup-avatar');
+    const popupTitle    = document.getElementById('popup-title');
     const popupSubtitle = document.getElementById('popup-subtitle');
-    const popupDesc = document.getElementById('popup-desc');
-    const closePopup = document.getElementById('close-popup');
+    const popupDesc     = document.getElementById('popup-desc');
+    const closePopup    = document.getElementById('close-popup');
 
-    // Data Source Mapping IDs to Persona Information
     const personaData = {
-        'wise-leader': { 
+        'wise-leader': {
             avatar: '👴',
-            title: 'Ông nội bụng bự', 
-            role: 'The Wise Leader', 
-            desc: 'The strategic mind behind the empire. Brings wisdom, calm, and steady guidance to the entire guild.' 
+            title: 'Ông nội bụng bự',
+            role: 'The Wise Leader',
+            desc: 'Cột trụ vững chắc nhất của nhà. Ông không nói nhiều, nhưng mỗi lời ông nói đều chứa đựng yêu thương và sự khôn ngoan của cả một đời người.'
         },
-        'sweetest-soul': { 
+        'sweetest-soul': {
             avatar: '👵',
-            title: 'Bà nội hay quên', 
-            role: 'The Sweetest Soul', 
-            desc: 'The heart of our family. Always bringing joy and warmth to the server, even if the lore gets wonderfully retold.' 
+            title: 'Bà nội hay quên',
+            role: 'The Sweetest Soul',
+            desc: 'Quên nè, nhưng chắc chắn không bao giờ quên yêu thương các con. Bà là người giữ lửa ấm cho cả nhà, mỗi bữa cơm bà nấu đều là một món quà từ trái tim.'
         },
-        'tech-head': { 
+        'tech-head': {
             avatar: '👨‍💻',
-            title: 'Ba Mập ù', 
-            role: 'Tech-Head & Delivery', 
-            desc: 'Chief system operator and the ultimate logistical support. Makes sure the base runs smoothly with high-speed precision.' 
+            title: 'Ba Mập ù',
+            role: 'Tấm Lưng Vững Chắc',
+            desc: 'Kiểu gì cũng lo được, kiểu gì cũng tự giải quyết. Ba không cần ai hỏi thăm mà vẫn đặt những đứa con lên hàng đầu trong từng quyết định.'
         },
-        'energy-pack': { 
-            avatar: '💼',
-            title: 'Mẹ Béo đu đỉnh', 
-            role: 'The Energy-Pack', 
-            desc: 'Investment visionary with non-stop momentum. The dynamic powerhouse keeping the family economy thriving and ever-growing.' 
+        'energy-pack': {
+            avatar: '🐷',
+            title: 'Mẹ Béo đu đỉnh',
+            role: 'Linh Hồn Năng Lượng',
+            desc: 'Mẹ vừa làm việc, vừa chăm con, vừa yêu thương cả nhà mà vẫn đu đỉnh được. Bí quyết? Chắc là vì nhà mình quá vui nên mẹ chẳng bao giờ mệt.'
         },
-        'grumpy-coder': { 
-            avatar: '🖥️',
-            title: 'Hai Bim quạu', 
-            role: 'Grumpy Coder • Age 14', 
-            desc: 'System overload mood. Usually found compiling code, debugging life, and plotting the next digital takeover. Do not disturb.' 
+        'grumpy-coder': {
+            avatar: '🤴',
+            title: 'Hai Bim quạu',
+            role: 'Anh Hai Kế Cách • 14 tuổi',
+            desc: 'Nhìn thì quạu nhưng thực ra rất phá, rất nghịch và rất thương em. Anh Hai là người lúc nào cũng có kế hoạch, chỉ là kế hoạch đó chưa ai biết thôi.'
         },
-        'princess-cute': { 
+        'princess-cute': {
             avatar: '👸',
-            title: 'Ốc Mun cư tê', 
-            role: 'Princess of Cute • Age 11', 
-            desc: 'Cuteness overflow. Has maxed out charisma stats and charms everyone effortlessly with her cheerful buffs.' 
+            title: 'Ốc Mun cư tê',
+            role: 'Công chúa dễ thương • 11 tuổi',
+            desc: 'Nhìn cái mặt là thấy người ta muốn niêu liền. Ốc Mun mang đến nụ cười cho cả nhà mỗi ngày — không cần lý do, chỉ cần được là chính mình.'
         }
     };
 
-    // Handle Node Clicks
-    nodes.forEach(node => {
-        node.addEventListener('click', (e) => {
+    document.querySelectorAll('.node').forEach(node => {
+        node.addEventListener('click', e => {
             e.stopPropagation();
-            
-            const id = node.getAttribute('data-id');
-            const data = personaData[id];
-
-            if (data && popup) {
-                // Inject content
-                document.getElementById('popup-avatar').textContent = data.avatar;
-                popupTitle.textContent = data.title;
-                popupSubtitle.textContent = data.role;
-                popupDesc.textContent = data.desc;
-
-                // Force reflow to restart the slide-up animation cleanly
-                popup.classList.remove('active');
-                void popup.offsetWidth;
-                popup.classList.add('active');
-            }
+            const data = personaData[node.getAttribute('data-id')];
+            if (!data || !popup) return;
+            popupAvatar.textContent   = data.avatar;
+            popupTitle.textContent    = data.title;
+            popupSubtitle.textContent = data.role;
+            popupDesc.textContent     = data.desc;
+            popup.classList.remove('active');
+            void popup.offsetWidth;
+            popup.classList.add('active');
         });
     });
 
-    // Close Popup Interactions
-    closePopup.addEventListener('click', () => {
-        popup.classList.remove('active');
-    });
-
-    // Click outside nodes/popup closes the popup
-    document.addEventListener('click', (e) => {
+    closePopup.addEventListener('click', () => popup.classList.remove('active'));
+    document.addEventListener('click', e => {
         if (!e.target.closest('.node') && !e.target.closest('.popup')) {
             popup.classList.remove('active');
         }
     });
 
-    /* =========================================================
-       4. Banner Easter Egg (Sound + Confetti)
-       ========================================================= */
-    const pigIcon = document.getElementById('pig-easter-egg');
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       4. GALLERY SYSTEM
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const galleryOverlay  = document.getElementById('gallery-overlay');
+    const galleryGrid     = document.getElementById('gallery-grid');
+    const galleryEmpty    = document.getElementById('gallery-empty');
+    const galleryTitle    = document.getElementById('gallery-year-title');
+    const gallerySubtitle = document.getElementById('gallery-subtitle');
+    const galleryEmptyYear= document.getElementById('gallery-empty-year');
+    const galleryCloseBtn = document.getElementById('gallery-close-btn');
+
+    const specialYears = {
+        2011: 'Năm Hai Bim chào đời 🎂',
+        2014: 'Năm Ốc Mun chào đời 🎀'
+    };
+
+    let currentGalleryImages = [];
+
+    function openGallery(year) {
+        const photos = (typeof GALLERY_DATA !== 'undefined' && GALLERY_DATA[year]) ? GALLERY_DATA[year] : [];
+        currentGalleryImages = photos.map(f => `assets/${year}/${f}`);
+
+        galleryTitle.textContent    = year;
+        gallerySubtitle.textContent = specialYears[year] || `Ký ức năm ${year}`;
+        galleryEmptyYear.textContent = year;
+
+        // Clear and populate grid
+        galleryGrid.innerHTML = '';
+
+        if (currentGalleryImages.length === 0) {
+            galleryGrid.style.display  = 'none';
+            galleryEmpty.style.display = 'flex';
+        } else {
+            galleryGrid.style.display  = 'grid';
+            galleryEmpty.style.display = 'none';
+            currentGalleryImages.forEach((src, idx) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'gallery-thumb';
+                thumb.innerHTML = `<img src="${src}" alt="Photo ${idx + 1}" loading="lazy"><div class="thumb-overlay"></div>`;
+                thumb.addEventListener('click', () => openLightbox(idx));
+                galleryGrid.appendChild(thumb);
+            });
+        }
+
+        galleryOverlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeGallery() {
+        galleryOverlay.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    galleryCloseBtn.addEventListener('click', closeGallery);
+    galleryOverlay.addEventListener('click', e => {
+        if (e.target === galleryOverlay) closeGallery();
+    });
+
+    // Year cards in timeline → open gallery
+    document.querySelectorAll('.year-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const year = parseInt(card.getAttribute('data-year'));
+            openGallery(year);
+        });
+    });
+
+    // Dropdown year links → scroll to card + open gallery
+    document.querySelectorAll('.year-nav-link').forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const year    = parseInt(link.getAttribute('data-year'));
+            const targetCard = document.getElementById(`year-${year}`);
+            dropdownContent.classList.remove('show');
+
+            if (targetCard) {
+                // Scroll the timeline wrapper so the card is visible
+                targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                // Small delay for pleasant UX before gallery opens
+                setTimeout(() => openGallery(year), 500);
+            } else {
+                openGallery(year);
+            }
+        });
+    });
+
+    // Start Journey button → scroll to timeline
+    const startBtn = document.getElementById('start-journey-btn');
+    if (startBtn) {
+        startBtn.addEventListener('click', () => {
+            document.getElementById('year-2011').scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        });
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       5. LIGHTBOX
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const lightbox        = document.getElementById('lightbox');
+    const lightboxImg     = document.getElementById('lightbox-img');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    const lightboxClose   = document.getElementById('lightbox-close');
+    const lightboxPrev    = document.getElementById('lightbox-prev');
+    const lightboxNext    = document.getElementById('lightbox-next');
+    const lightboxBdrop   = document.getElementById('lightbox-backdrop');
+
+    let lightboxIndex = 0;
+
+    function openLightbox(idx) {
+        lightboxIndex = idx;
+        showLightboxImage();
+        lightbox.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.add('hidden');
+        document.body.style.overflow = 'hidden'; // keep gallery scroll locked
+    }
+
+    function showLightboxImage() {
+        lightboxImg.src = currentGalleryImages[lightboxIndex];
+        lightboxCounter.textContent = `${lightboxIndex + 1} / ${currentGalleryImages.length}`;
+        lightboxPrev.style.opacity = lightboxIndex === 0 ? '0.3' : '1';
+        lightboxNext.style.opacity = lightboxIndex === currentGalleryImages.length - 1 ? '0.3' : '1';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxBdrop.addEventListener('click', closeLightbox);
+
+    lightboxPrev.addEventListener('click', () => {
+        if (lightboxIndex > 0) { lightboxIndex--; showLightboxImage(); }
+    });
+    lightboxNext.addEventListener('click', () => {
+        if (lightboxIndex < currentGalleryImages.length - 1) { lightboxIndex++; showLightboxImage(); }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', e => {
+        if (!lightbox.classList.contains('hidden')) {
+            if (e.key === 'ArrowLeft'  && lightboxIndex > 0) { lightboxIndex--; showLightboxImage(); }
+            if (e.key === 'ArrowRight' && lightboxIndex < currentGalleryImages.length - 1) { lightboxIndex++; showLightboxImage(); }
+            if (e.key === 'Escape') closeLightbox();
+        } else if (!galleryOverlay.classList.contains('hidden')) {
+            if (e.key === 'Escape') closeGallery();
+        }
+    });
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       6. EASTER EGG 🐷
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const pigIcon  = document.getElementById('pig-easter-egg');
     const pigAudio = document.getElementById('pig-sound');
 
     pigIcon.addEventListener('click', () => {
-        // 1. Play Bounce Animation
         pigIcon.classList.remove('oink');
-        void pigIcon.offsetWidth; // Reflow
+        void pigIcon.offsetWidth;
         pigIcon.classList.add('oink');
 
-        // 2. Play Audio (Catch promise errors safely typically caused by auto-play policies if user hasn't interacted, though this is click-driven so it should be fine)
         if (pigAudio) {
-            pigAudio.currentTime = 0; // Reset to start
-            let playPromise = pigAudio.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log("Audio play prevented:", error);
-                });
-            }
+            pigAudio.currentTime = 0;
+            pigAudio.play().catch(() => {});
         }
 
-        // 3. Fire Confetti Showers
         if (typeof confetti === 'function') {
-            const duration = 2500; // 2.5 seconds
-            const end = Date.now() + duration;
-
+            const end = Date.now() + 2500;
             (function frame() {
-                // Fire from left edge
-                confetti({
-                    particleCount: 5,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0 },
-                    colors: ['#fbcfe8', '#00f3ff', '#fcd34d'] // Pink, Neon Blue, Gold
-                });
-                
-                // Fire from right edge
-                confetti({
-                    particleCount: 5,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1 },
-                    colors: ['#fbcfe8', '#00f3ff', '#fcd34d']
-                });
-
-                // Loop until duration ends
-                if (Date.now() < end) {
-                    requestAnimationFrame(frame);
-                }
+                confetti({ particleCount: 5, angle: 60,  spread: 55, origin: { x: 0 }, colors: ['#f9a8d4','#00f3ff','#fbbf24'] });
+                confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#f9a8d4','#00f3ff','#fbbf24'] });
+                if (Date.now() < end) requestAnimationFrame(frame);
             }());
         }
     });

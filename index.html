@@ -1,73 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Béo's Family - The Piggy Empire</title>
-    <!-- Modern Fonts -->
+    <meta name="description" content="Béo's Family — 15 năm yêu thương, vui nhộn và hòa nhập. Nơi tình yêu gia đình gặp gỡ công nghệ.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navigation -->
+
+    <!-- ═══════════════════════════════════════════
+         NAVIGATION
+    ═══════════════════════════════════════════ -->
     <nav class="navbar">
-        <div class="logo">
-            Béo's family
-        </div>
-        <div class="menu-container dropdown" id="dropdown-menu">
-            <button class="glass-btn btn-dropdown" id="dropdown-btn">15-Year Adventure <span class="arrow">▼</span></button>
-            <div class="dropdown-content glass-card hidden" id="dropdown-content">
+        <div class="logo">Béo's family</div>
+        <div class="dropdown" id="dropdown-menu">
+            <button class="glass-btn btn-dropdown" id="dropdown-btn">
+                15-Year Adventure <span class="arrow">▼</span>
+            </button>
+            <div class="dropdown-content glass-card" id="dropdown-content">
                 <ul>
-                    <li><a href="#year-2011">Level 2011</a></li>
-                    <li><a href="#year-2015">Level 2015</a></li>
-                    <li><a href="#year-2020">Level 2020</a></li>
-                    <li><a href="#year-2026">Level 2026</a></li>
+                    <li><a href="#year-2011" class="year-nav-link" data-year="2011">🎂 2011 — Hai Bim chào đời</a></li>
+                    <li><a href="#year-2012" class="year-nav-link" data-year="2012">2012</a></li>
+                    <li><a href="#year-2013" class="year-nav-link" data-year="2013">2013</a></li>
+                    <li><a href="#year-2014" class="year-nav-link" data-year="2014">🎀 2014 — Ốc Mun chào đời</a></li>
+                    <li><a href="#year-2015" class="year-nav-link" data-year="2015">2015</a></li>
+                    <li><a href="#year-2016" class="year-nav-link" data-year="2016">2016</a></li>
+                    <li><a href="#year-2017" class="year-nav-link" data-year="2017">2017</a></li>
+                    <li><a href="#year-2018" class="year-nav-link" data-year="2018">2018</a></li>
+                    <li><a href="#year-2019" class="year-nav-link" data-year="2019">2019</a></li>
+                    <li><a href="#year-2020" class="year-nav-link" data-year="2020">2020</a></li>
+                    <li><a href="#year-2021" class="year-nav-link" data-year="2021">2021</a></li>
+                    <li><a href="#year-2022" class="year-nav-link" data-year="2022">2022</a></li>
+                    <li><a href="#year-2023" class="year-nav-link" data-year="2023">2023</a></li>
+                    <li><a href="#year-2024" class="year-nav-link" data-year="2024">2024</a></li>
+                    <li><a href="#year-2025" class="year-nav-link" data-year="2025">2025</a></li>
+                    <li><a href="#year-2026" class="year-nav-link" data-year="2026">2026</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section / Command Center -->
+    <!-- ═══════════════════════════════════════════
+         HERO — COMMAND CENTER
+    ═══════════════════════════════════════════ -->
     <section class="hero" id="home">
-        <!-- 3D Tilt Container -->
         <div class="hero-container" id="hero-tilt-target">
-            
-            <!-- Main Image Wrapper -->
-            <!-- Placeholder background fallback if assets/image_3.png is missing -->
             <div class="hero-image" id="hero-img-bg"></div>
+            <div class="hero-vignette"></div>
 
-            <!-- Glowing Nodes for Family Members -->
-            <!-- Positions estimated for a standard 6-person family portrait -->
-            
-            <!-- Ông nội (Front Left) -->
-            <div class="node pulse" data-id="wise-leader" style="top: 70%; left: 30%;">
+            <!-- TOP ROW (L→R): Ba | Ốc Mun | Hai Bim | Mẹ -->
+            <!-- Ba Mập ù -->
+            <div class="node pulse" data-id="tech-head" style="top: 32%; left: 13%;">
                 <div class="node-core"></div>
             </div>
-            
-            <!-- Bà nội (Front Right) -->
-            <div class="node pulse" data-id="sweetest-soul" style="top: 70%; right: 30%;">
+            <!-- Ốc Mun cư tê -->
+            <div class="node pulse" data-id="princess-cute" style="top: 40%; left: 37%;">
                 <div class="node-core"></div>
             </div>
-            
-            <!-- Ba Mập ù (Back Left) -->
-            <div class="node pulse" data-id="tech-head" style="top: 35%; left: 20%;">
+            <!-- Anh Hai Bim quạu -->
+            <div class="node pulse" data-id="grumpy-coder" style="top: 26%; left: 53%;">
                 <div class="node-core"></div>
             </div>
-            
-            <!-- Mẹ Béo (Back Right) -->
-            <div class="node pulse" data-id="energy-pack" style="top: 35%; right: 20%;">
+            <!-- Mẹ Béo đu đỉnh -->
+            <div class="node pulse" data-id="energy-pack" style="top: 30%; left: 81%;">
                 <div class="node-core"></div>
             </div>
-            
-            <!-- Hai Bim (Back Center Left) -->
-            <div class="node pulse" data-id="grumpy-coder" style="top: 25%; left: 45%;">
+            <!-- BOTTOM ROW: Ông nội | Bà nội -->
+            <!-- Ông nội bụng bự -->
+            <div class="node pulse" data-id="wise-leader" style="top: 67%; left: 30%;">
                 <div class="node-core"></div>
             </div>
-            
-            <!-- Ốc Mun (Back Center Right) -->
-            <div class="node pulse" data-id="princess-cute" style="top: 40%; right: 45%;">
+            <!-- Bà nội hay quên -->
+            <div class="node pulse" data-id="sweetest-soul" style="top: 70%; left: 61%;">
                 <div class="node-core"></div>
             </div>
 
@@ -84,72 +92,146 @@
             </div>
         </div>
 
-        <!-- Sleek Banner Bottom-Left -->
-        <div class="bottom-banner glass-card" id="banner-tilt">
+        <!-- Banner Bottom-Left -->
+        <div class="bottom-banner glass-card">
             <h1>BÉO'S FAMILY <span id="pig-easter-egg" class="piggy-icon" title="Oink!">🐷</span></h1>
             <p class="tagline">WHERE LOVE MEETS TECHNOLOGY</p>
         </div>
     </section>
 
-    <!-- Timeline Adventure -->
+    <!-- ═══════════════════════════════════════════
+         TIMELINE ADVENTURE
+    ═══════════════════════════════════════════ -->
     <section class="timeline-section" id="timeline">
         <div class="timeline-header">
-            <h2>Timeline Adventure <span class="highlight">(2011 - Present)</span></h2>
-            <p>Scroll horizontally to explore the levels</p>
+            <h2>The Adventure <span class="highlight">2011 – 2026</span></h2>
+            <p>Bấm vào từng năm để xem ký ức 📸</p>
         </div>
-        
-        <!-- Intro Image Area (image_2.png intended here) -->
+
+        <!-- Intro family photo (image_2.png) -->
         <div class="timeline-intro-container">
             <div class="timeline-intro-img">
-                <div class="glass-btn cta">Start the Journey</div>
+                <div class="glass-btn cta" id="start-journey-btn">Bắt Đầu Hành Trình ✨</div>
             </div>
         </div>
 
-        <!-- Horizontal Scrollable Track -->
+        <!-- Horizontal Scrollable Year Track -->
         <div class="timeline-scroll-wrapper">
-            <div class="timeline-track">
-                <!-- Data Nodes along the Timeline -->
-                <div class="timeline-card glass-card level-card" id="year-2011">
-                    <div class="level-badge">Level 2011</div>
-                    <div class="card-content">
-                        <h3>The Beginning</h3>
-                        <p>Where the first lines of code were written into our family's history.</p>
-                    </div>
+            <div class="timeline-track" id="timeline-track">
+
+                <div class="year-card glass-card special-year" id="year-2011" data-year="2011">
+                    <div class="year-special-icon">🎂</div>
+                    <div class="year-number">2011</div>
+                    <div class="year-special-label">Hai Bim<br>chào đời</div>
                 </div>
-                
-                <div class="timeline-card glass-card level-card" id="year-2015">
-                    <div class="level-badge">Level 2015</div>
-                    <div class="card-content">
-                        <h3>Expanding Storage</h3>
-                        <p>Upgrading our base and expanding the party with boundless energy.</p>
-                    </div>
+
+                <div class="year-card glass-card" id="year-2012" data-year="2012">
+                    <div class="year-number">2012</div>
                 </div>
-                
-                <div class="timeline-card glass-card level-card" id="year-2020">
-                    <div class="level-badge">Level 2020</div>
-                    <div class="card-content">
-                        <h3>Network Upgrade</h3>
-                        <p>Connecting deeper, playing harder, and surviving the great remote era.</p>
-                    </div>
+
+                <div class="year-card glass-card" id="year-2013" data-year="2013">
+                    <div class="year-number">2013</div>
                 </div>
-                
-                <div class="timeline-card glass-card level-card" id="year-2026">
-                    <div class="level-badge">Level 2026</div>
-                    <div class="card-content">
-                        <h3>The Piggy Empire</h3>
-                        <p>Present day. Full server capacity, maxed-out stats, unified force.</p>
-                    </div>
+
+                <div class="year-card glass-card special-year special-year--pink" id="year-2014" data-year="2014">
+                    <div class="year-special-icon">🎀</div>
+                    <div class="year-number">2014</div>
+                    <div class="year-special-label">Ốc Mun<br>chào đời</div>
                 </div>
+
+                <div class="year-card glass-card" id="year-2015" data-year="2015">
+                    <div class="year-number">2015</div>
+                </div>
+
+                <div class="year-card glass-card" id="year-2016" data-year="2016">
+                    <div class="year-number">2016</div>
+                </div>
+
+                <div class="year-card glass-card" id="year-2017" data-year="2017">
+                    <div class="year-number">2017</div>
+                </div>
+
+                <div class="year-card glass-card" id="year-2018" data-year="2018">
+                    <div class="year-number">2018</div>
+                </div>
+
+                <div class="year-card glass-card" id="year-2019" data-year="2019">
+                    <div class="year-number">2019</div>
+                </div>
+
+                <div class="year-card glass-card" id="year-2020" data-year="2020">
+                    <div class="year-number">2020</div>
+                </div>
+
+                <div class="year-card glass-card" id="year-2021" data-year="2021">
+                    <div class="year-number">2021</div>
+                </div>
+
+                <div class="year-card glass-card" id="year-2022" data-year="2022">
+                    <div class="year-number">2022</div>
+                </div>
+
+                <div class="year-card glass-card" id="year-2023" data-year="2023">
+                    <div class="year-number">2023</div>
+                </div>
+
+                <div class="year-card glass-card" id="year-2024" data-year="2024">
+                    <div class="year-number">2024</div>
+                </div>
+
+                <div class="year-card glass-card" id="year-2025" data-year="2025">
+                    <div class="year-number">2025</div>
+                </div>
+
+                <div class="year-card glass-card" id="year-2026" data-year="2026">
+                    <div class="year-number">2026</div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Audio Element for the Easter Egg -->
+    <!-- ═══════════════════════════════════════════
+         GALLERY MODAL (Year Photo Grid)
+    ═══════════════════════════════════════════ -->
+    <div id="gallery-overlay" class="gallery-overlay hidden">
+        <div class="gallery-modal glass-card">
+            <button class="gallery-close" id="gallery-close-btn">&times;</button>
+            <div class="gallery-modal-header">
+                <h2 class="gallery-year-title" id="gallery-year-title">2011</h2>
+                <p class="gallery-subtitle" id="gallery-subtitle">Hành trình ký ức</p>
+            </div>
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Photos loaded dynamically by JS -->
+            </div>
+            <div class="gallery-empty" id="gallery-empty">
+                <div class="gallery-empty-icon">📷</div>
+                <p>Chưa có hình nào cho năm này.</p>
+                <span>Copy hình vào thư mục <code>assets/<span id="gallery-empty-year">2011</span>/</code><br>và thêm tên file vào <code>assets/gallery-data.js</code></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         LIGHTBOX (Full Image View)
+    ═══════════════════════════════════════════ -->
+    <div id="lightbox" class="lightbox hidden">
+        <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+        <button class="lightbox-close" id="lightbox-close">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev">&#8249;</button>
+        <div class="lightbox-img-wrapper">
+            <img id="lightbox-img" src="" alt="Family photo">
+            <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
+        </div>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next">&#8250;</button>
+    </div>
+
+    <!-- Audio Easter Egg -->
     <audio id="pig-sound" src="https://assets.mixkit.co/active_storage/sfx/265/265.wav" preload="auto"></audio>
 
-    <!-- Confetti JS -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <!-- Custom Logic -->
+    <script src="assets/gallery-data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
