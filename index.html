@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Piggy Empire | Gia Đình Heo Béo</title>
+    <meta name="description"
+        content="Welcome to The Piggy Empire: Where Love Meets Technology. A 15-year adventure of our family's digital world.">
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navbar / Easter Egg -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <h1 class="logo">Béo's family</h1>
+            <div class="easter-egg" id="piggy-icon" title="Oink!">
+                <span>🐷</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Hero & Command Center Section -->
+    <section class="hero-section" id="hero">
+        <div class="hero-bg">
+            <img src="assets/image_3.png" alt="The Piggy Empire Family of 6" id="hero-img">
+            <div class="glass-overlay"></div>
+
+            <!-- Refined hotspots based on user image layout -->
+            <div class="image-map-container hero-map">
+                <div class="hotspot" data-member="ba-map" style="top:35%; left: 55%;" aria-label="Ba Mập ù"></div>
+                <div class="hotspot" data-member="hai-bim" style="top:22%; left:100%;" aria-label="Hai Bim quạu"></div>
+                <div class="hotspot" data-member="me-beo" style="top:24%; left:72%;" aria-label="Mẹ Béo đu đỉnh"></div>
+                <div class="hotspot" data-member="oc-mun" style="top:40%; left:50%;" aria-label="Ốc Mun cư tê"></div>
+                <div class="hotspot" data-member="ong-noi" style="top:74%; left:41%;" aria-label="Ông nội bụng bự">
+                </div>
+                <div class="hotspot" data-member="ba-noi" style="top:76%; left:62%;" aria-label="Bà nội hay quên"></div>
+            </div>
+        </div>
+        <div class="hero-content hero-bottom">
+            <h1 class="glitch-text" data-text="Béo's Family">Béo's Family</h1>
+            <h2 class="sub-headline">Where Love Meets Technology</h2>
+            <p class="hero-hint">Click on a family member to unlock their profile</p>
+        </div>
+    </section>
+
+    <!-- Secondary Gallery Intro -->
+    <section class="secondary-vision" id="secondary">
+        <div class="section-header">
+            <h2 class="glowing-title">Our World</h2>
+        </div>
+        <div class="vision-container">
+            <img src="assets/image_1.png" alt="Family of 4" class="vision-img">
+        </div>
+    </section>
+
+    <!-- Persona Modals -->
+    <div class="modal-backdrop" id="member-modal">
+        <div class="modal-content glass-card tilt-effect">
+            <button class="close-btn" aria-label="Close modal">&times;</button>
+            <div class="modal-header">
+                <h3 id="modal-title">Name</h3>
+                <span id="modal-role" class="tech-badge">Role</span>
+            </div>
+            <div class="modal-body">
+                <p id="modal-desc">Description goes here.</p>
+                <div id="modal-widget" class="tech-widget"></div>
+            </div>
+            <div class="glow-orb"></div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Timeline Adventure -->
+    <section class="timeline-adventure" id="timeline">
+        <div class="timeline-intro">
+            <div class="intro-card glass-card">
+                <img src="assets/image_2.png" alt="Finger Hearts" class="intro-img">
+                <div class="intro-text">
+                    <h2 class="cta-heading">Unlock our 15-Year Adventure</h2>
+                    <p>A journey of Love and Tech.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="horizontal-track">
+            <!-- Timeline Nodes Generated via JS -->
+            <div id="timeline-nodes" class="nodes-container"></div>
+        </div>
+    </section>
+
+    <footer class="cyber-footer">
+        <p>Copyright © Béo's Family <span id="current-year"></span>. Build with ❤️ & ⚡️.</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
