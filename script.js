@@ -51,38 +51,38 @@ document.addEventListener('DOMContentLoaded', () => {
         'wise-leader': {
             avatar: '👴',
             title: 'Ông nội bụng bự',
-            role: 'The Wise Leader',
-            desc: 'Cột trụ vững chắc nhất của nhà. Ông không nói nhiều, nhưng mỗi lời ông nói đều chứa đựng yêu thương và sự khôn ngoan của cả một đời người.'
+            role: 'The Silent Guardian',
+            desc: 'Là điểm tựa vững chãi của cả đế chế với trái tim hiền hậu và bao dung. Ông ít nói, chỉ lặng lẽ quan tâm và chăm sóc cả nhà bằng những hành động thiết thực. Hình ảnh ông luôn kề cạnh Bà nội, không một lời than vãn, chính là biểu tượng của tình yêu vĩnh cửu trong gia đình.'
         },
         'sweetest-soul': {
             avatar: '👵',
             title: 'Bà nội hay quên',
             role: 'The Sweetest Soul',
-            desc: 'Quên nè, nhưng chắc chắn không bao giờ quên yêu thương các con. Bà là người giữ lửa ấm cho cả nhà, mỗi bữa cơm bà nấu đều là một món quà từ trái tim.'
+            desc: 'Trái tim của bà luôn tràn ngập sự lo lắng và yêu thương cho con cháu. Dù đôi khi “bộ nhớ” có chút trục trặc kiểu “não cá vàng” khiến cả nhà dở khóc dở cười, nhưng chính sự hồn nhiên và tấm lòng vị tha của bà là sợi dây kết nối hạnh phúc cho mọi thành viên.'
         },
         'tech-head': {
             avatar: '👨‍💻',
             title: 'Ba Mập ù',
-            role: 'Tấm Lưng Vững Chắc',
-            desc: 'Kiểu gì cũng lo được, kiểu gì cũng tự giải quyết. Ba không cần ai hỏi thăm mà vẫn đặt những đứa con lên hàng đầu trong từng quyết định.'
+            role: 'The Super Architect',
+            desc: 'Vừa là thuyền trưởng, vừa là “siêu nhân” của gia đình. Ba gánh vác mọi trọng trách, từ việc lớn đến việc nhỏ đều xử lý gọn gàng mà không bao giờ ca thán. Với Ba, hạnh phúc của vợ con là hệ điều hành quan trọng nhất mà Ba luôn cố gắng tối ưu mỗi ngày.'
         },
         'energy-pack': {
             avatar: '🐷',
             title: 'Mẹ Béo đu đỉnh',
-            role: 'Linh Hồn Năng Lượng',
-            desc: 'Mẹ vừa làm việc, vừa chăm con, vừa yêu thương cả nhà mà vẫn đu đỉnh được. Bí quyết? Chắc là vì nhà mình quá vui nên mẹ chẳng bao giờ mệt.'
+            role: 'The Energy-Pack',
+            desc: '“Nàng thơ” của cả nhà với những sở thích cực kỳ đáng yêu: ăn, ngủ, chốt đơn livestream và chăm lo cho Pun ù. Dù đôi lúc có hay cằn nhằn một chút “cho vui cửa vui nhà”, nhưng đằng sau đó là một tình yêu thương vô bờ bến dành cho tổ ấm nhỏ.'
         },
         'grumpy-coder': {
             avatar: '🤴',
-            title: 'Hai Bim quạu',
-            role: 'Anh Hai Kế Cách • 14 tuổi',
-            desc: 'Nhìn thì quạu nhưng thực ra rất phá, rất nghịch và rất thương em. Anh Hai là người lúc nào cũng có kế hoạch, chỉ là kế hoạch đó chưa ai biết thôi.'
+            title: 'Hai Bim đập chai',
+            role: 'The Warm Coder',
+            desc: 'Sở hữu vẻ ngoài điển trai chuẩn Hàn Quốc cùng tính cách “ít nói, hay quạu” đặc trưng của tuổi 14. Tuy nhiên, ẩn sau lớp vỏ bọc ấy là một tâm hồn ấm áp và ý chí cầu tiến, luôn nỗ lực hết mình trong học tập để trở thành phiên bản tốt nhất của chính mình.'
         },
         'princess-cute': {
             avatar: '👸',
             title: 'Ốc Mun cư tê',
-            role: 'Công chúa dễ thương • 11 tuổi',
-            desc: 'Nhìn cái mặt là thấy người ta muốn niêu liền. Ốc Mun mang đến nụ cười cho cả nhà mỗi ngày — không cần lý do, chỉ cần được là chính mình.'
+            role: 'The Cuteness CEO',
+            desc: 'Đại sứ ngoại giao của gia đình với tính cách hoạt bát và khả năng kết nối mọi người. Không chỉ khéo tay với những sản phẩm móc len tinh xảo, Mun còn bộc lộ tố chất “nữ doanh nhân” từ sớm. Đặc biệt, Mun còn là “trợ lý đắc lực” không thể thiếu của Ba trong mọi việc vặt.'
         }
     };
 
@@ -121,7 +121,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const specialYears = {
         2011: 'Năm Hai Bim chào đời 🎂',
-        2014: 'Năm Ốc Mun chào đời 🎀'
+        2014: 'Năm Ốc Mun chào đời 🎀',
+        2022: 'Hai Bim tốt nghiệp Cấp 1 🎓',
+        2024: 'Ốc Mun tốt nghiệp Cấp 1 🎓',
+        2025: 'Pun Ù về nhà 💕',
+        2026: 'Hai Bim tốt nghiệp Cấp 2 🎓'
     };
 
     let currentGalleryImages = [];
