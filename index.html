@@ -1,109 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Piggy Empire | Gia Đình Heo Béo</title>
-    <meta name="description"
-        content="Welcome to The Piggy Empire: Where Love Meets Technology. A 15-year adventure of our family's digital world.">
-    <!-- Google Fonts: Inter & Outfit -->
+    <title>Béo's Family - The Piggy Empire</title>
+    <!-- Modern Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;700;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- Navbar / Easter Egg -->
-    <nav class="glass-nav">
-        <div class="nav-container">
-            <h1 class="logo">Béo's family</h1>
-            <div class="easter-egg" id="piggy-icon" title="Oink!">
-                <span>🐷</span>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            Béo's family
+        </div>
+        <div class="menu-container dropdown" id="dropdown-menu">
+            <button class="glass-btn btn-dropdown" id="dropdown-btn">15-Year Adventure <span class="arrow">▼</span></button>
+            <div class="dropdown-content glass-card hidden" id="dropdown-content">
+                <ul>
+                    <li><a href="#year-2011">Level 2011</a></li>
+                    <li><a href="#year-2015">Level 2015</a></li>
+                    <li><a href="#year-2020">Level 2020</a></li>
+                    <li><a href="#year-2026">Level 2026</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Confetti Canvas -->
-    <canvas id="confetti-canvas"></canvas>
+    <!-- Hero Section / Command Center -->
+    <section class="hero" id="home">
+        <!-- 3D Tilt Container -->
+        <div class="hero-container" id="hero-tilt-target">
+            
+            <!-- Main Image Wrapper -->
+            <!-- Placeholder background fallback if assets/image_3.png is missing -->
+            <div class="hero-image" id="hero-img-bg"></div>
 
-    <!-- Hero & Command Center Section -->
-    <section class="hero-section" id="hero">
-        <div class="hero-bg">
-            <img src="assets/image_3.png" alt="The Piggy Empire Family of 6" id="hero-img">
-            <div class="glass-overlay"></div>
+            <!-- Glowing Nodes for Family Members -->
+            <!-- Positions estimated for a standard 6-person family portrait -->
+            
+            <!-- Ông nội (Front Left) -->
+            <div class="node pulse" data-id="wise-leader" style="top: 70%; left: 30%;">
+                <div class="node-core"></div>
+            </div>
+            
+            <!-- Bà nội (Front Right) -->
+            <div class="node pulse" data-id="sweetest-soul" style="top: 70%; right: 30%;">
+                <div class="node-core"></div>
+            </div>
+            
+            <!-- Ba Mập ù (Back Left) -->
+            <div class="node pulse" data-id="tech-head" style="top: 35%; left: 20%;">
+                <div class="node-core"></div>
+            </div>
+            
+            <!-- Mẹ Béo (Back Right) -->
+            <div class="node pulse" data-id="energy-pack" style="top: 35%; right: 20%;">
+                <div class="node-core"></div>
+            </div>
+            
+            <!-- Hai Bim (Back Center Left) -->
+            <div class="node pulse" data-id="grumpy-coder" style="top: 25%; left: 45%;">
+                <div class="node-core"></div>
+            </div>
+            
+            <!-- Ốc Mun (Back Center Right) -->
+            <div class="node pulse" data-id="princess-cute" style="top: 40%; right: 45%;">
+                <div class="node-core"></div>
+            </div>
 
-            <!-- Refined hotspots based on user image layout -->
-            <div class="image-map-container hero-map">
-                <div class="hotspot" data-member="ba-map" style="top:35%; left: 55%;" aria-label="Ba Mập ù"></div>
-                <div class="hotspot" data-member="hai-bim" style="top:22%; left:100%;" aria-label="Hai Bim quạu"></div>
-                <div class="hotspot" data-member="me-beo" style="top:24%; left:72%;" aria-label="Mẹ Béo đu đỉnh"></div>
-                <div class="hotspot" data-member="oc-mun" style="top:40%; left:50%;" aria-label="Ốc Mun cư tê"></div>
-                <div class="hotspot" data-member="ong-noi" style="top:74%; left:41%;" aria-label="Ông nội bụng bự">
+            <!-- Persona Pop-up Card -->
+            <div id="profile-popup" class="glass-card popup">
+                <button class="close-btn" id="close-popup">&times;</button>
+                <div class="popup-avatar" id="popup-avatar">🐷</div>
+                <div class="popup-inner">
+                    <h3 id="popup-title">Name</h3>
+                    <div class="popup-role-badge" id="popup-subtitle">Role</div>
+                    <p id="popup-desc">Description</p>
                 </div>
-                <div class="hotspot" data-member="ba-noi" style="top:76%; left:62%;" aria-label="Bà nội hay quên"></div>
+                <div class="popup-glow"></div>
             </div>
         </div>
-        <div class="hero-content hero-bottom">
-            <h1 class="glitch-text" data-text="Béo's Family">Béo's Family</h1>
-            <h2 class="sub-headline">Where Love Meets Technology</h2>
-            <p class="hero-hint">Click on a family member to unlock their profile</p>
-        </div>
-    </section>
 
-    <!-- Secondary Gallery Intro -->
-    <section class="secondary-vision" id="secondary">
-        <div class="section-header">
-            <h2 class="glowing-title">Our World</h2>
+        <!-- Sleek Banner Bottom-Left -->
+        <div class="bottom-banner glass-card" id="banner-tilt">
+            <h1>BÉO'S FAMILY <span id="pig-easter-egg" class="piggy-icon" title="Oink!">🐷</span></h1>
+            <p class="tagline">WHERE LOVE MEETS TECHNOLOGY</p>
         </div>
-        <div class="vision-container">
-            <img src="assets/image_1.png" alt="Family of 4" class="vision-img">
-        </div>
-    </section>
-
-    <!-- Persona Modals -->
-    <div class="modal-backdrop" id="member-modal">
-        <div class="modal-content glass-card tilt-effect">
-            <button class="close-btn" aria-label="Close modal">&times;</button>
-            <div class="modal-header">
-                <h3 id="modal-title">Name</h3>
-                <span id="modal-role" class="tech-badge">Role</span>
-            </div>
-            <div class="modal-body">
-                <p id="modal-desc">Description goes here.</p>
-                <div id="modal-widget" class="tech-widget"></div>
-            </div>
-            <div class="glow-orb"></div>
-        </div>
-    </div>
     </section>
 
     <!-- Timeline Adventure -->
-    <section class="timeline-adventure" id="timeline">
-        <div class="timeline-intro">
-            <div class="intro-card glass-card">
-                <img src="assets/image_2.png" alt="Finger Hearts" class="intro-img">
-                <div class="intro-text">
-                    <h2 class="cta-heading">Unlock our 15-Year Adventure</h2>
-                    <p>A journey of Love and Tech.</p>
-                </div>
+    <section class="timeline-section" id="timeline">
+        <div class="timeline-header">
+            <h2>Timeline Adventure <span class="highlight">(2011 - Present)</span></h2>
+            <p>Scroll horizontally to explore the levels</p>
+        </div>
+        
+        <!-- Intro Image Area (image_2.png intended here) -->
+        <div class="timeline-intro-container">
+            <div class="timeline-intro-img">
+                <div class="glass-btn cta">Start the Journey</div>
             </div>
         </div>
 
-        <div class="horizontal-track">
-            <!-- Timeline Nodes Generated via JS -->
-            <div id="timeline-nodes" class="nodes-container"></div>
+        <!-- Horizontal Scrollable Track -->
+        <div class="timeline-scroll-wrapper">
+            <div class="timeline-track">
+                <!-- Data Nodes along the Timeline -->
+                <div class="timeline-card glass-card level-card" id="year-2011">
+                    <div class="level-badge">Level 2011</div>
+                    <div class="card-content">
+                        <h3>The Beginning</h3>
+                        <p>Where the first lines of code were written into our family's history.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-card glass-card level-card" id="year-2015">
+                    <div class="level-badge">Level 2015</div>
+                    <div class="card-content">
+                        <h3>Expanding Storage</h3>
+                        <p>Upgrading our base and expanding the party with boundless energy.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-card glass-card level-card" id="year-2020">
+                    <div class="level-badge">Level 2020</div>
+                    <div class="card-content">
+                        <h3>Network Upgrade</h3>
+                        <p>Connecting deeper, playing harder, and surviving the great remote era.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-card glass-card level-card" id="year-2026">
+                    <div class="level-badge">Level 2026</div>
+                    <div class="card-content">
+                        <h3>The Piggy Empire</h3>
+                        <p>Present day. Full server capacity, maxed-out stats, unified force.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="cyber-footer">
-        <p>Copyright © Béo's Family <span id="current-year"></span>. Build with ❤️ & ⚡️.</p>
-    </footer>
+    <!-- Audio Element for the Easter Egg -->
+    <audio id="pig-sound" src="https://assets.mixkit.co/active_storage/sfx/265/265.wav" preload="auto"></audio>
 
-    <script src="main.js"></script>
+    <!-- Confetti JS -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Custom Logic -->
+    <script src="script.js"></script>
 </body>
-
 </html>
